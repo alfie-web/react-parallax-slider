@@ -28,7 +28,6 @@ const Slide = ({
 						backgroundSize: 'cover',
 						left: `${imageLeftPosition}%`,
 						transform: `translate3d(${imagePos}%, 0, 0)`		// С параллаксом
-						// transform: `translate3d(${imageLeftPosition}%, 0, 0)`	// Без параллакса
 					}}
 				></div>
 				<div className="Slide__overlay"></div>

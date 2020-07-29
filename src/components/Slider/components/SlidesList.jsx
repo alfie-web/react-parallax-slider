@@ -8,9 +8,10 @@ const SlidesList = ({
 	className, 
 	items, 
 	curSlide,
-
+	transition,
 	imagePos
 }) => {
+	// console.log('RERENDERS')
 
 	return (
 		<div 
@@ -31,9 +32,31 @@ const SlidesList = ({
 							className={`Slide-${i}`}
 
 							slideLeftPosition={i * 100}
-							imageLeftPosition={-(i * 50)}
 
-							imagePos={imagePos}
+							imageLeftPosition={
+								transition === 'parallax' ? -(i * 50) :
+								transition === 'layer' ? -(i * 100) :
+								transition === 'classic' ? -(i * 50)
+								: -(i * 50)
+								
+							}	
+							imagePos={
+								transition === 'parallax' ? imagePos :
+								transition === 'layer' ? (imagePos / 50) * 100 :
+								transition === 'classic' ? (i * 50) :
+								imagePos
+							}		
+
+
+
+							// imageLeftPosition={-(i * 50)}		// Эффект параллакс 
+							// imagePos={imagePos}		// Эффект параллакс
+							
+							// imageLeftPosition={-(i * 100)}		// Эффект по слоям
+							// imagePos={(imagePos / 50) * 100}	// Эффект по слоям
+
+							// imageLeftPosition={-(i * 50)}		// Эффект классический		{(i * 50)} - тож можно
+							// imagePos={(i * 50)}		// Эффект классический		{-(i * 50)}	- тож можно
 						/>
 					)
 				})
