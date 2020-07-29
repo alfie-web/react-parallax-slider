@@ -10,7 +10,6 @@ const Slide = ({
 	slideLeftPosition,
 	imageLeftPosition,
 
-	// slidePos,
 	imagePos
 }) => {
 	return (
@@ -20,7 +19,6 @@ const Slide = ({
 			})}
 			style={{
 				left: `${slideLeftPosition}%`,
-				// transform: isActive && `translate3d(${slidePos}%, 0, 0)`
 			}}
 		>
 			<div className="Slide__container">
@@ -29,9 +27,8 @@ const Slide = ({
 						background: `url(${image}) center no-repeat`,
 						backgroundSize: 'cover',
 						left: `-${imageLeftPosition}%`,
-						transform: `translate3d(${imagePos}%, 0, 0)`
-						// transform: isActive && `translate3d(${imagePos}%, 0, 0)`
-						// transform: isActive ? `translate3d(${imagePos}%, 0, 0)` : `translate3d(${imageLeftPosition}%, 0, 0)`
+						transform: `translate3d(${imagePos}%, 0, 0)`		// С параллаксом
+						// transform: `translate3d(${imageLeftPosition}%, 0, 0)`	// Без параллакса
 					}}
 				></div>
 				<div className="Slide__overlay"></div>
