@@ -7,7 +7,7 @@ import { Slide } from './';
 const SlidesList = ({ 
 	className, 
 	items, 
-	activeSlide,
+	curSlide,
 
 	imagePos
 }) => {
@@ -16,7 +16,7 @@ const SlidesList = ({
 		<div 
 			className={classNames('SlidesList', className)}
 			style={{
-				transform: `translate3d(-${activeSlide * 100}%, 0, 0)`
+				transform: `translate3d(-${curSlide * 100}%, 0, 0)`
 			}}
 		>
 			{
@@ -27,11 +27,11 @@ const SlidesList = ({
 							title={slide.title}
 							descr={slide.descr}
 							image={slide.image}
-							isActive={activeSlide === i}
+							isActive={curSlide === i}
 							className={`Slide-${i}`}
 
 							slideLeftPosition={i * 100}
-							imageLeftPosition={i * 50}
+							imageLeftPosition={-(i * 50)}
 
 							imagePos={imagePos}
 						/>

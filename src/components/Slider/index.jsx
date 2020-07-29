@@ -50,6 +50,13 @@ const Slider = ({
 		});
 	}
 
+	const onControlClick = (dir) => {
+		clearInterval(autoSlideTimeout);
+		prevBackSlide(dir);
+	}
+
+
+
 	const changeDirection = (curSlide) => {
 		if (curSlide === items.length - 1) {
 			forward = false;
@@ -62,7 +69,6 @@ const Slider = ({
 		changeDirection(state.curSlide);
 
 		if (forward) {
-		// if (state.forward) {
 			prevBackSlide(1);	
 		} else {
 			// changeState({ 	// Версия где после последнего слайда снова первый
@@ -75,16 +81,6 @@ const Slider = ({
 	}, [changeState, state.curSlide, items.length]);
 
 
-
-	// Если forward в state
-	// useEffect(() => {
-	// 	if (state.curSlide === items.length - 1) {
-	// 		changeState({ forward: false })
-	// 	} else if (state.curSlide === 0) {
-	// 		changeState({ forward: true })
-	// 	}
-	// }, [items.length, state.curSlide])
-
 	useEffect(() => {
 		autoSlideTimeout = setInterval(autoSlide, animTime);
 
@@ -94,10 +90,24 @@ const Slider = ({
 	return (
 		<div className={classNames('Slider', sliderClass)}>
 			<span>{state.curSlide}</span>
+		
+			<div 
+				className={classNames('Slider__control left', {
+					'inactive': state.curSlide <= 0
+				})} 
+				onClick={() => onControlClick(-1)}
+			></div>
+			<div 
+				className={classNames('Slider__control right', {
+					'inactive': state.curSlide >= items.length - 1
+				})} 
+				onClick={() => onControlClick(1)}
+			></div>
+
 			<SlidesList 
 				items={items}
 				className="Slider__items"
-				activeSlide={state.curSlide}
+				curSlide={state.curSlide}
 
 				imagePos={state.imagePos}
 			/>

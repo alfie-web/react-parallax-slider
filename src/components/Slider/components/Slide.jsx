@@ -26,7 +26,7 @@ const Slide = ({
 					style={{
 						background: `url(${image}) center no-repeat`,
 						backgroundSize: 'cover',
-						left: `-${imageLeftPosition}%`,
+						left: `${imageLeftPosition}%`,
 						transform: `translate3d(${imagePos}%, 0, 0)`		// С параллаксом
 						// transform: `translate3d(${imageLeftPosition}%, 0, 0)`	// Без параллакса
 					}}
