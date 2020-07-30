@@ -71,6 +71,7 @@ function App() {
 				// transitionTime={300}
 				// autoSlides={false}
 				// touchable={false}
+				activeSlide={2}
                         />
 
 
@@ -80,7 +81,7 @@ function App() {
 			{/* <div {...handlers} style={{ width: '100px', height: '100px', backgroundColor: 'red' }}></div> */}
 
 
-                        {/* <Slider 
+                        <Slider 
                                 sliderClass="MySlider"
                                 // activeSlide={1}
                                 items={MOCK_SLIDES}
@@ -88,7 +89,7 @@ function App() {
                                 // dots={false}
                                 transition="layer"   // parallax, layer, classic
                                 autoSlides={false}
-                        /> */}
+                        />
                 </div>
         );
 }
