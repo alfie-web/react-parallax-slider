@@ -26,15 +26,15 @@ const Slide = ({
 					style={{
 						background: `url(${image}) center no-repeat`,
 						backgroundSize: 'cover',
-						left: `${imageLeftPosition}%`,
-						transform: `translate3d(${imagePos}%, 0, 0)`		// С параллаксом
+						left: `${imageLeftPosition}%`,	// curr
+						transform: `translate3d(${imagePos}%, 0, 0)`		// С параллаксом curr
 					}}
 				></div>
 				<div className="Slide__overlay"></div>
 
 				<div className="Slide__info">
 					<div className="Slide__title">{title}</div>
-					<div className="Slide__title">{descr}</div>
+					<div className="Slide__descr">{descr}</div>
 				</div>
 			</div>
 		</div>

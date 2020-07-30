@@ -1,4 +1,24 @@
 
+
+
+@keyframes rotate-left
+	49%
+		opacity: 1
+		transform: rotate(0deg)
+	100%
+		opacity: 1
+		transform: rotate(180deg)
+
+@keyframes rotate-right	
+	49%
+		opacity: 1
+	50%
+		opacity: 0
+		transform: rotate(180deg)
+	100%
+		transform: rotate(180deg)
+
+
 .Slider
 	position: relative
 	height: 600px
@@ -16,7 +36,7 @@
 
 
 	&__control
-		z-index: 2
+		z-index: 5
 		position: absolute
 		top: 0
 		width: 12%
@@ -44,6 +64,86 @@
 			background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.18) 100%)
 	
 
+	&__numbers
+		position: absolute
+		z-index: 2
+		top: 80px
+		left: 8%
+		font: 18px 'Circe', sans-serif
+		color: white
+
+
+
+	
+	&__dots
+		position: absolute
+		display: flex
+		justify-content: flex-end
+		z-index: 10
+		right: 8%
+		bottom: 80px
+		list-style-type: none
+	
+	&__dot
+		cursor: pointer
+		display: inline-block
+		position: relative
+		width: 10px
+		height: 10px
+		border-radius: 50%
+		background: rgba(255, 255, 255, 0)
+		overflow: hidden
+		margin-right: 30px
+		opacity: .15
+		transition: transform .3s, opacity .3s
+
+		&:last-child
+			margin-right: 0
+
+		.left, .right
+			position: absolute
+			height: 100%
+			width: 50%
+			overflow: hidden
+
+			.anim
+				display: block
+				width: 100%
+				height: 100%
+				position: relative
+				background-color: white
+
+		.left
+			left: 0
+
+			.anim
+				opacity: 1
+				transform-origin: right center
+				transform: rotate(0deg)
+
+		.right
+			right: 0
+
+			.anim
+				opacity: 1
+				transform-origin: left center
+				transform: rotate(0deg)
+
+	&__dot
+		&--active
+			transform: scale(2)
+			opacity: 1
+
+			.left
+				.anim
+					// animation: rotate-left 3s linear
+
+			.right
+				.anim
+					// animation: rotate-right 3s linear
+
+
+
 
 
 
@@ -52,6 +152,7 @@
 
 
 .Slide
+	$slide: &
 	position: absolute
 	top: 0
 	height: 100%
@@ -90,138 +191,26 @@
 		left: 0
 		height: 100%
 		width: 100%
-		opacity: 0
+		background-color: rgba(32, 33, 36, .3)
 
 	&__info
 		position: absolute
-		left: 0
-		bottom: 0
+		left: 8%
+		bottom: 80px
+		opacity: 0
+		transform: translateY(30px)
+		z-index: 100
+		transition: opacity .3s ease .5s, transform .3s ease .5s
 
+	&__title, &__descr
+		color: white
+	&__title
+		font: 36px 'Circe', sans-serif
+		margin-bottom: 10px
+	&__descr
+		font: 18px 'Circe', sans-serif
 
-
-// .slider-pagi {
-// 	position: absolute;
-// 	z-index: 3;
-// 	left: 50%;
-// 	-webkit-transform: translateX(-50%);
-// 	transform: translateX(-50%);
-// 	list-style-type: none;
-// }
-
-// .slider-pagi__elem {
-// 	cursor: pointer;
-// }
-
-// .slider-pagi__elem.active {
-// 	color: white;
-// }
-
-
-
-// @media (max-width: 991px) {
-// 	.slide__overlay {
-// 		display: none;
-// 	}
-// }
-
-// .slide__overlay path {
-// 	opacity: 0.8;
-// }
-
-// .slide__text {
-// 	position: absolute;
-// 	width: 25%;
-// 	bottom: 15%;
-// 	left: 12%;
-// 	color: #fff;
-// 	transition: opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s;
-// 	transition: transform 0.5s 0.8s, opacity 0.5s 0.8s;
-// 	transition: transform 0.5s 0.8s, opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s;
-// 	will-change: transform, opacity;
-// 	-webkit-transform: translateY(-50%);
-// 	transform: translateY(-50%);
-// 	opacity: 0;
-// }
-
-// @media (max-width: 991px) {
-// 	.slide__text {
-// 		left: 0;
-// 		bottom: 0;
-// 		width: 100%;
-// 		height: 20rem;
-// 		text-align: center;
-// 		-webkit-transform: translateY(50%);
-// 		transform: translateY(50%);
-// 		transition: opacity 0.5s 0.5s, -webkit-transform 0.5s 0.5s;
-// 		transition: transform 0.5s 0.5s, opacity 0.5s 0.5s;
-// 		transition: transform 0.5s 0.5s, opacity 0.5s 0.5s, -webkit-transform 0.5s 0.5s;
-// 		padding: 0 1rem;
-// 	}
-// }
-
-// .slide__text-heading {
-// 	font-family: "Polar", Helvetica, Arial, sans-serif;
-// 	font-size: 5rem;
-// 	margin-bottom: 2rem;
-// }
-
-// @media (max-width: 991px) {
-// 	.slide__text-heading {
-// 		line-height: 20rem;
-// 		font-size: 3.5rem;
-// 	}
-// }
-
-// .slide__text-desc {
-// 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
-// 	font-size: 1.8rem;
-// 	margin-bottom: 1.5rem;
-// }
-
-// @media (max-width: 991px) {
-// 	.slide__text-desc {
-// 		display: none;
-// 	}
-// }
-
-// .slide__text-link {
-// 	z-index: 5;
-// 	display: inline-block;
-// 	position: relative;
-// 	padding: 0.5rem;
-// 	cursor: pointer;
-// 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
-// 	font-size: 2.3rem;
-// 	-webkit-perspective: 1000px;
-// 	perspective: 1000px;
-// }
-
-// @media (max-width: 991px) {
-// 	.slide__text-link {
-// 		display: none;
-// 	}
-// }
-
-// .slide__text-link:before {
-// 	z-index: -1;
-// 	content: "";
-// 	position: absolute;
-// 	top: 0;
-// 	left: 0;
-// 	width: 100%;
-// 	height: 100%;
-// 	background: #000;
-// 	-webkit-transform-origin: 50% 100%;
-// 	transform-origin: 50% 100%;
-// 	-webkit-transform: rotateX(-85deg);
-// 	transform: rotateX(-85deg);
-// 	transition: -webkit-transform 0.3s;
-// 	transition: transform 0.3s;
-// 	transition: transform 0.3s, -webkit-transform 0.3s;
-// 	will-change: transform;
-// }
-
-// .slide__text-link:hover:before {
-// 	-webkit-transform: rotateX(0);
-// 	transform: rotateX(0);
-// }
+	&--active
+		#{$slide}__info
+			opacity: 1
+			transform: translateY(0)
