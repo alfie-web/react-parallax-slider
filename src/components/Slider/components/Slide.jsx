@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+// import { useSwipeable, Swipeable } from 'react-swipeable'
 
 const Slide = ({ 
 	isActive, 
@@ -9,10 +10,11 @@ const Slide = ({
 	descr,
 	slideLeftPosition,
 	imageLeftPosition,
-
-	imagePos
+	transitionTime,
+	imagePos,
 }) => {
 	return (
+		// <Swipeable onSwiped={(eventData) => () => console.log(eventData)}>
 		<div 
 			className={classNames('Slide', className, {
 				'Slide--active': isActive
@@ -20,6 +22,7 @@ const Slide = ({
 			style={{
 				left: `${slideLeftPosition}%`,
 			}}
+			
 		>
 			<div className="Slide__container">
 				<div className="Slide__image" 
@@ -27,7 +30,8 @@ const Slide = ({
 						background: `url(${image}) center no-repeat`,
 						backgroundSize: 'cover',
 						left: `${imageLeftPosition}%`,	// curr
-						transform: `translate3d(${imagePos}%, 0, 0)`		// С параллаксом curr
+						transform: `translate3d(${imagePos}%, 0, 0)`,		// С параллаксом curr
+						transition: `transform ${transitionTime}ms`,
 					}}
 				></div>
 				<div className="Slide__overlay"></div>
@@ -38,6 +42,7 @@ const Slide = ({
 				</div>
 			</div>
 		</div>
+		// </Swipeable>
 	)
 }
 

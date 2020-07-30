@@ -8,6 +8,7 @@ const SlidesList = ({
 	className, 
 	items, 
 	curSlide,
+	transitionTime,
 	transition,
 	imagePos
 }) => {
@@ -17,7 +18,8 @@ const SlidesList = ({
 		<div 
 			className={classNames('SlidesList', className)}
 			style={{
-				transform: `translate3d(-${curSlide * 100}%, 0, 0)`		// curr
+				transform: `translate3d(-${curSlide * 100}%, 0, 0)`,		// curr
+				transition: `transform ${transitionTime}ms`,
 			}}
 		>
 			{
@@ -30,15 +32,10 @@ const SlidesList = ({
 							image={slide.image}
 							isActive={curSlide === i}
 							className={`Slide-${i}`}
-
+							transitionTime={transitionTime}
 							slideLeftPosition={i * 100}
 
 							imageLeftPosition={
-								// transition === 'parallax' ? -(i * 50) :
-								// transition === 'layer' ? -(i * 100) :
-								// transition === 'classic' ? -(i * 50)
-								// : -(i * 50)
-
 								transition === 'parallax' || transition === 'classic' ? -(i * 50) :
 								transition === 'layer' ? -(i * 100)
 								: -(i * 50)
@@ -51,6 +48,9 @@ const SlidesList = ({
 								imagePos
 							}		
 
+							// onTouchStart={(e) => console.log('onTouchStart', e)}
+							// onTouchMove={(e) => console.log('onTouchMove', e)}
+							// onTouchEnd={(e) => console.log('onTouchEnd', e)}
 
 
 							// imageLeftPosition={-(i * 50)}		// Эффект параллакс 

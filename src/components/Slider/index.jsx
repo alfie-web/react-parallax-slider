@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, Fragment, memo } from 'react';
 import classNames from 'classnames';
+import { useSwipeable } from 'react-swipeable';
 
 import { SlidesList, Dot, Arrow, Numbers } from './components';
 
@@ -13,9 +14,11 @@ const Slider = memo(({
 	activeSlide = 1,
 	autoSlides = true,
 	animTime = 3000,
+	transitionTime = 500,
 	transition = 'parallax',	// classic, fade, layer
 	dots = true,
 	arrows = true,
+	touchable = true,
 	items = []
 }) => {
 	const [state, setState] = useState({
@@ -26,7 +29,21 @@ const Slider = memo(({
 	let autoSlideTimeout = useRef(null);
 	let forward = useRef(true);
 
-	console.log('RERENDERS')
+	// TODO: Вообще попробовать вставить проверку на первый/последний слайд в prevBackSlide, 
+	// хотя не лучше в controlClick (переименовать в moveSlide), сделать его универсальнейшим, 
+	// а prevBackSlide переименовать в handleSlideMove
+	const handlers = useSwipeable({
+		onSwipedLeft: () => {
+			touchable && state.curSlide < items.length - 1 && prevBackSlide(1);
+		},
+		onSwipedRight: () => {
+			touchable && state.curSlide > 0 && prevBackSlide(-1)
+		},
+		preventDefaultTouchmoveEvent: true,
+		trackMouse: true
+	});
+
+	// console.log('RERENDERS')
 
 	const changeState = useCallback((props) => {
 		setState({
@@ -35,7 +52,7 @@ const Slider = memo(({
 		})
 	}, [state])
 
-	const prevBackSlide = useCallback((dir, pos) => {	// Когда будут dots, тогда добавится параметр pos, ( pos || state.curSlide +- 1 )
+	const prevBackSlide = useCallback((dir, pos) => {
 		let curSlideNext;
 
 		if (dir) curSlideNext = state.curSlide + dir;
@@ -48,7 +65,7 @@ const Slider = memo(({
 	}, [changeState, state.curSlide])
 
 	const onControlClick = (dir, pos) => {
-		clearInterval(autoSlideTimeout.current);
+		// clearInterval(autoSlideTimeout.current);
 		prevBackSlide(dir, pos);
 	}
 
@@ -80,7 +97,8 @@ const Slider = memo(({
 	}, [autoSlide, animTime, autoSlides])
 	
 	return (
-		<div className={classNames('Slider', sliderClass)}>
+
+		<div {...handlers} className={classNames('Slider', sliderClass)}>
 			<Numbers 
 				curSlide={state.curSlide}
 				slidesLength={items.length}
@@ -127,6 +145,7 @@ const Slider = memo(({
 				items={items}
 				className="Slider__items"
 				curSlide={state.curSlide}
+				transitionTime={transitionTime}
 				transition={transition}
 				imagePos={state.imagePos}
 			/>

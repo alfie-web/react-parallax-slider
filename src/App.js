@@ -1,4 +1,5 @@
 import React from 'react';
+// import { useSwipeable, Swipeable } from 'react-swipeable'
 
 import { Slider } from './components';
 
@@ -49,8 +50,16 @@ const MOCK_SLIDES = [
 ];
 
 // TODO: Сделать fade эффект
+// TODO: Сделать touch
 
 function App() {
+	// const handlers = useSwipeable({
+	// 	onSwipedLeft: () => console.log('Left swipe'),
+	// 	onSwipedRight: () => console.log('Right swipe'),
+	// 	preventDefaultTouchmoveEvent: true,
+	// 	trackMouse: true
+	// });
+
         return (
                 <div className="App">
                         <Slider 
@@ -58,13 +67,18 @@ function App() {
                                 // activeSlide={1}
                                 items={MOCK_SLIDES}
                                 // arrows={false}
-                                transition="parallax"   // parallax, layer, classic
-                                // autoSlides={false}
+				transition="parallax"   // parallax, layer, classic
+				// transitionTime={300}
+				// autoSlides={false}
+				// touchable={false}
                         />
+
 
                         {/* <span>
                                 Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Его диких жаренные наш рыбного он повстречался вдали, запятых парадигматическая агентство злых, последний правилами толку грамматики, не путь. Снова коварный запятых текстов своего несколько собрал инициал океана на берегу безорфографичный даль ручеек толку первую, имени гор, коварных напоивший рыбного образ пустился букв. Гор, но? Обеспечивает это свое большого первую проектах парадигматическая до своего заманивший реторический скатился океана буквоград, предупредила даль что? Возвращайся пустился ее власти вершину которое, букв составитель? Заглавных снова города несколько предупреждал жизни оксмокс запятой семантика предупредила журчит которой вскоре заголовок ведущими безорфографичный, взобравшись подзаголовок страну большого всеми по всей не? Приставка правилами на берегу, страна безопасную осталось послушавшись пустился свою. Щеке свой его переписывается снова рукопись, себя назад оксмокс языком!
                         </span> */}
+			{/* <div {...handlers} style={{ width: '100px', height: '100px', backgroundColor: 'red' }}></div> */}
+
 
                         {/* <Slider 
                                 sliderClass="MySlider"
